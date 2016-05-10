@@ -10,7 +10,7 @@ import (
 
 func main() {
 	service := micro.NewService(
-		micro.Name("factorial"),
+		micro.Name("go.micro.srv.factorial"),
 		micro.Flags(
 			cli.StringFlag{
 				Name: "factorial",
@@ -19,14 +19,7 @@ func main() {
 		),
 	)
 
-	service.Init(
-/*		micro.Action(func(c *cli.Context) {
-			env := c.StringFlag("factorial")
-			if len(env) > 0 {
-				fmt.Println("Environment set to", env)
-			}
-		}),*/
-	)
+	service.Init()
 
 	proto.RegisterFactorialHandler(service.Server(), new(handler.Factorial))
 
